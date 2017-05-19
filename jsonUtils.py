@@ -1,9 +1,6 @@
 #coding=utf-8
-
 import json
-# eleType="varlist/objbegin/objend/objlistbegin/objlistend"
-#
-#
+
 class Element(object):
         def __init__(self,level,name,desc,eleType):
                 self._level=level
@@ -13,20 +10,29 @@ class Element(object):
 
 class ElementList(object):
         def __init__(self):
-                self._eleList=[]
+            self._eleList=[]
 
         def push_back(self,aElement):
-                self._eleList.append(aElement)
-                return self._eleList;
+            self._eleList.append(aElement)
+            return self._eleList;
         def push(self,aElement):
-                self._eleList.append(aElement)
+            self._eleList.append(aElement)
+        def pushParam(self,level,name,desc,eleType):
+            aElem=Element(level,name,desc,eleType)
+            self.push(aElem)
         def pop(self):
+            if (len(self._eleList) > 0):
                 return self._eleList.pop()
+            else:
+                return None
         def count(self):
-                return len(self._eleList)
+            return len(self._eleList)
 
         def getIndex(self,index):
+            if (len(self._eleList) > index):
                 return self._eleList[index]
+            else:
+                return None
 
 def getType(value):
     if(isinstance(value,dict)):
@@ -84,4 +90,4 @@ def decodeJson(jsonStr,elementList,i):
                 print("type [%s]"%type(jsonStr[j]))
     else:
         print("jsonStr is not json object!")
-
+    return True
