@@ -87,7 +87,8 @@ def decodeJson(jsonStr,elementList,i):
             if(isinstance(jsonStr[j],dict)):
                 decodeJson(jsonStr[j],elementList,i=i+1)
             else:
-                print("type [%s]"%type(jsonStr[j]))
+                pass
+#                print("type [%s]"%type(jsonStr[j]))
     else:
         print("jsonStr is not json object!")
     return True
